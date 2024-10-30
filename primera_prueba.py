@@ -2,8 +2,8 @@
 from pyniryo import *
 
 # - Constants
-workspace_name = "workspace_1"  # Robot's Workspace Name
-robot_ip_address = "x.x.x.x"
+workspace_name = "bloque1"  # Robot's Workspace Name
+robot_ip_address = "169.254.200.200"
 
 # The pose from where the image processing happens
 observation_pose = PoseObject(
