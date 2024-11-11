@@ -4,10 +4,10 @@ from pyniryo import *
 
 class MovimientoBrazo:
     def __init__(self):
-        self.robot = NiryoRobot("169.254.200.200")
+        self.robot = NiryoRobot("127.0.0.1")
         self.robot.calibrate_auto()
         self.mtx, self.dist = self.robot.get_camera_intrinsics()
-        self.workspace_name = "bloque1"
+        self.workspace_name = "gazebo_1"
         self.observation_pose1 = PoseObject(
             x=0.18, y=0.0, z=0.35,
             roll=0.0, pitch=1.57, yaw=-0.2,
@@ -72,7 +72,7 @@ class MovimientoBrazo:
     def vision_pick(self):
         ret = self.robot.get_target_pose_from_cam(self.workspace_name,
                                                    height_offset=0.0,
-                                                   shape=ObjectShape.RECTANGLE,
+                                                   shape=ObjectShape.SQUARE,
                                                    color=ObjectColor.ANY)
         obj_found, obj_pose, shape, color = ret
 
@@ -172,8 +172,6 @@ class Seguimiento:
             if key in [27, ord("q")]:
                 break
 
-
-class 
 
 
 if __name__ == "__main__":

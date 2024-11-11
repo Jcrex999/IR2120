@@ -6,15 +6,22 @@ import numpy as np
 class ControlNiryo:
     def __init__(self):
         # Definir el robot y calibrar
-        self.robot = NiryoRobot("169.254.200.200")
+
+        # Si estas en simulador es 127.0.0.1
+        # Si estas en el real es 169.254.200.200
+
+        self.robot = NiryoRobot("127.0.0.1")
         self.robot.calibrate_auto()
 
         # Obtener la matriz de la cámara y los coeficientes de distorsión
         self.mtx, self.dist = self.robot.get_camera_intrinsics()
 
         # Definir el nombre de los espacios de trabajo
-        self.workspace_name1 = "bloque1"
-        self.workspace_name2 = "bloque2"
+        self.workspace_name1 = "gazebo_1"
+        self.workspace_name2 = "gazebo_2"
+
+        #self.workspace_name1 = "bloque1"
+        #self.workspace_name2 = "bloque2"
 
         # Definir las variables específicas para las actividades
         self.variables_especificas = {
@@ -41,14 +48,26 @@ class ControlNiryo:
             "bloque2": PoseObject(
                 x=0.18, y=1.0, z=0.35,
                 roll=0.0, pitch=1.57, yaw=0.2,
+            ),
+            "gazebo_1": PoseObject(
+                x=0.18, y=0.0, z=0.35,
+                roll=0.0, pitch=1.6, yaw=-0.1,
+            ),
+            "gazebo_2": PoseObject(
+                x=0.0, y=0.2, z=0.35,
+                roll=0.0, pitch=1.67, yaw=1.57,
             )
         }
 
         # Definir las posiciones de colocación
         self.place_pose = {
             "center_conditioning_pose": PoseObject(
-                x=0.0, y=-0.2, z=0.12,
-                roll=0.0, pitch=1.57, yaw=-1.57
+                x=0.0, y=0.2, z=0.12,
+                roll=0.0, pitch=1.57, yaw=1.57
+            ),
+            "dejar_obj": PoseObject(
+                x=0.0, y=0.25, z=0.12,
+                roll=0.0, pitch=1.57, yaw=1.57
             )
         }
 
@@ -172,6 +191,11 @@ class ControlNiryo:
                 self.robot.place_from_pose(place_pose)
                 break
 
+    def mover_pick(self, place_pose):
+        self.vision_pick()
+        self.robot.move_pose(self.place_pose[place_pose])
+        self.robot.open_gripper(100)
+
     # ==================================================
     # Seguimiento de objetos
     def centrar_objeto(self):
@@ -185,6 +209,7 @@ class ControlNiryo:
         else:
             cx, cy = get_contour_barycenter(contour)
             cx_rel, cy_rel = relative_pos_from_pixels(img, cx, cy)
+            print(cx_rel, cy_rel)
             angle = get_contour_angle(contour)
             self.robot.move_pose(PoseObject(x=cx_rel, y=cy_rel, z=0.35, roll=0.0, pitch=1.57, yaw=angle))
 
@@ -352,3 +377,16 @@ class ControlNiryo:
         self.detect_grid(self.detectar_work_grid())
         self.calcular_jugada()
         self.move_to_grid()
+
+if __name__ == "__main__":
+    robot = ControlNiryo()
+    
+    #robot.robot.move_pose(robot.place_pose["dejar_obj"])
+    
+    #robot.mover_observation_pose("gazebo_2")
+    
+    #for _ in range(3):
+    #    robot.mover_pick("dejar_obj")
+    robot.robot.move_pose(robot.observation_poses["gazebo_1"])
+    while True:
+        robot.centrar_objeto()
