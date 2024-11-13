@@ -248,7 +248,8 @@ class ControlNiryo:
                     if pose[2] > -0.5:
                         pose[2] -= 0.1
 
-            self.robot.move_pose(PoseObject(pose))
+            print("\n", pose, "Situación actual\n")
+            self.robot.move_pose(PoseObject(*pose))
 
     # ==================================================
     # Juego del tres en raya
