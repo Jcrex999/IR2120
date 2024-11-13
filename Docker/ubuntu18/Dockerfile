@@ -14,24 +14,24 @@ RUN apt-get install -y python3 python3-pip
 RUN apt-get install -y software-properties-common dirmngr
 
 # Instalar ROS Melodic
-RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' && \
-    apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key F42ED6FBAB17C654 && \
-    apt-get update && \
-    apt-get install -y ros-melodic-desktop-full && \
-    rosdep init && \
-    rosdep update && \
-    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+#RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' && \
+#    apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key F42ED6FBAB17C654 && \
+#    apt-get update && \
+#    apt-get install -y ros-melodic-desktop-full && \
+#    rosdep init && \
+#    rosdep update && \
+#    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 
 # Instalar catkin, rosdep y herramientas adicionales
-RUN apt-get install -y python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && \
-    apt-get install -y python-catkin-tools
+#RUN apt-get install -y python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential && \
+#    apt-get install -y python-catkin-tools
 
 # Instalar snap y Visual Studio Code
-RUN apt-get install -y snapd && \
-    snap install --classic code
+#RUN apt-get install -y snapd && \
+#    snap install --classic code
 
 # Instalar Gazebo
-RUN apt-get install -y gazebo9 libgazebo9-dev
+#RUN apt-get install -y gazebo9 libgazebo9-dev
 
 # Crear un directorio de trabajo
 WORKDIR /workspace

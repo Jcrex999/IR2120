@@ -2,27 +2,25 @@ from pyniryo import *
 import cv2
 import numpy as np
 
-
+SIMULATION = True
 
 class ControlNiryo:
     def __init__(self):
         # Definir el robot y calibrar
 
-        # Si estas en simulador es 127.0.0.1
-        # Si estas en el real es 169.254.200.200
+        if SIMULATION:
+            self.robot = NiryoRobot("127.0.0.1")
+            self.workspace_name1 = "gazebo_1"
+            self.workspace_name2 = "gazebo_2"
+        else:
+            self.robot = NiryoRobot("169.254.200.200")
+            self.workspace_name1 = "bloque1"
+            self.workspace_name2 = "bloque2"
 
-        self.robot = NiryoRobot("169.254.200.200")
         self.robot.calibrate_auto()
 
         # Obtener la matriz de la cámara y los coeficientes de distorsión
         self.mtx, self.dist = self.robot.get_camera_intrinsics()
-
-        # Definir el nombre de los espacios de trabajo
-        #self.workspace_name1 = "gazebo_1"
-        #self.workspace_name2 = "gazebo_2"
-
-        self.workspace_name1 = "bloque1"
-        self.workspace_name2 = "bloque2"
 
         # Definir las variables específicas para las actividades
         self.variables_especificas = {
