@@ -481,9 +481,12 @@ if __name__ == "__main__":
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
     img_result = robot.get_img_workspace("gazebo_2")
     img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
-    lower = np.array([0, 0, 50])
+    lower = np.array([0, 0, 100])
     upper = np.array([255, 255, 200])
     mask = cv2.inRange(img_hsv, lower, upper)
 
     cv2.imshow("Mask", mask)
     cv2.waitKey(0)
+
+"""lower = np.array([0, 0, 100])
+        upper = np.array([179, 255, 200])"""
