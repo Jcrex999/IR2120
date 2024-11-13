@@ -306,7 +306,7 @@ class ControlNiryo:
         img_result = im_work.copy()
         img_hsv = cv2.cvtColor(im_work, cv2.COLOR_BGR2HSV)
         lower = np.array([0, 0, 100])
-        upper = np.array([179, 255, 200])
+        upper = np.array([190, 255, 200])
         mask = cv2.inRange(img_hsv, lower, upper)
 
         contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
