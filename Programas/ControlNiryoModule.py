@@ -206,7 +206,7 @@ class ControlNiryo:
     # Seguimiento de objetos
     def centrar_objeto(self):
         img = self.get_img()
-        img_thresh = self.detect_color("blue")
+        img_thresh = self.detect_color("green")
         contour = biggest_contour_finder(img_thresh)
         if contour is None or len(contour) == 0:
             print("No blob found")
