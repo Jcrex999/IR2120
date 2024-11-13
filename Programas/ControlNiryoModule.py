@@ -444,6 +444,47 @@ class ControlNiryo:
             self.vision_pick()
             self.move_to_grid()
 
+    def filtrado_img(self):
+        img = self.get_img_workspace("gazebo_2")
+        cv2.namedWindow('Trackbars')
+
+        # Create trackbars for color change
+        cv2.createTrackbar('H Lower', 'Trackbars', 0, 179, nothing)
+        cv2.createTrackbar('S Lower', 'Trackbars', 0, 255, nothing)
+        cv2.createTrackbar('V Lower', 'Trackbars', 0, 255, nothing)
+        cv2.createTrackbar('H Upper', 'Trackbars', 179, 179, nothing)
+        cv2.createTrackbar('S Upper', 'Trackbars', 255, 255, nothing)
+        cv2.createTrackbar('V Upper', 'Trackbars', 255, 255, nothing)
+
+        while True:
+            # Get current positions of the trackbars
+            h_lower = cv2.getTrackbarPos('H Lower', 'Trackbars')
+            s_lower = cv2.getTrackbarPos('S Lower', 'Trackbars')
+            v_lower = cv2.getTrackbarPos('V Lower', 'Trackbars')
+            h_upper = cv2.getTrackbarPos('H Upper', 'Trackbars')
+            s_upper = cv2.getTrackbarPos('S Upper', 'Trackbars')
+            v_upper = cv2.getTrackbarPos('V Upper', 'Trackbars')
+
+            lower = np.array([h_lower, s_lower, v_lower])
+            upper = np.array([h_upper, s_upper, v_upper])
+
+            img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+            mask = cv2.inRange(img_hsv, lower, upper)
+            result = cv2.bitwise_and(img, img, mask=mask)
+
+            cv2.imshow('Original', img)
+            cv2.imshow('Mask', mask)
+            cv2.imshow('Filtered', result)
+
+            if cv2.waitKey(1) & 0xFF == 27:  # Press 'ESC' to exit
+                break
+
+        cv2.destroyAllWindows()
+
+
+def nothing(x):
+    pass
+
 if __name__ == "__main__":
     robot = ControlNiryo()
 
@@ -478,7 +519,7 @@ if __name__ == "__main__":
         print(input("Jugador 2, presiona enter para continuar"))
     """
 
-
+    """
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
     img_result = robot.get_img_workspace("gazebo_2")
     img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
@@ -488,6 +529,8 @@ if __name__ == "__main__":
 
     cv2.imshow("Mask", mask)
     cv2.waitKey(0)
-"""
+
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
+
+    robot.filtrado_img()
