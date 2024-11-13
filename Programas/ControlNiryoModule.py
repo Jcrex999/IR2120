@@ -333,7 +333,7 @@ class ControlNiryo:
                     cv2.circle(img_result, (x_center, y_center), 5, (0, 0, 255), -1)
 
                     cv2.imshow("Grid", img_result)
-                    cv2.waitKey(1)
+                    cv2.waitKey(0)
 
                     # Calcular la posición en la matriz grid
                     grid_x = x_center // cell_width
