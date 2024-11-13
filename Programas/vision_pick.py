@@ -1,7 +1,7 @@
 from pyniryo import *
 
 # -- MUST Change these variables
-simulation_mode = True
+simulation_mode = False
 if simulation_mode:
     robot_ip_address, workspace_name = "127.0.0.1", "gazebo_1"
 else:
