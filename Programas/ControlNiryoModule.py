@@ -429,6 +429,7 @@ if __name__ == "__main__":
     robot.robot.move_pose(robot.observation_poses["bloque1"])
     robot.vision_pick()
     robot.robot.move_pose(robot.place_pose["dejar_obj"])
+    robot.robot.open_gripper(100)
 
     """
     robot.robot.move_pose(robot.observation_poses["bloque1"])
