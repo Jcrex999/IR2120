@@ -7,7 +7,6 @@ SIMULATION = True
 class ControlNiryo:
     def __init__(self):
         # Definir el robot y calibrar
-
         if SIMULATION:
             self.robot = NiryoRobot("127.0.0.1")
             self.workspace_name1 = "gazebo_1"
