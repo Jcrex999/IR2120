@@ -418,7 +418,7 @@ class ControlNiryo:
         best_move = find_best_move(self.variables_especificas["tablero"])
         if best_move:
             self.variables_especificas["tablero"][best_move[0]][best_move[1]] = 1
-            print(f"Jugador 1 coloca en la posición {best_move}")
+            print(f"Jugador 1 coloca en la posicion {best_move}")
             for fila in self.variables_especificas["tablero"]:
                 print(fila)
 
