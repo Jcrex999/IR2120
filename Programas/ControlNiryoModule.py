@@ -2,6 +2,8 @@ from pyniryo import *
 import cv2
 import numpy as np
 
+from Docker.ned_ros.sphinx_doc.conf import project
+
 
 class ControlNiryo:
     def __init__(self):
@@ -220,21 +222,25 @@ class ControlNiryo:
             pitch = pose[4]  # Yaw es el sexto elemento en la lista de pose
 
             # Ajustar movimientos según el ángulo de la cámara
-            if pitch == 1.57:
+            if 1.4 < pitch < 1.8:
                 # Esta duplicado, pero mas adelante se puede ajustar
                 if cx < img.shape[1] // 2:
                     if pose[1] < 0.5:
+                        print("Mover a la derecha")
                         pose[1] += 0.1
                 elif cx > img.shape[1] // 2:
                     if pose[1] > -0.5:
+                        print("Mover a la izquierda")
                         pose[1] -= 0.1
                 # Hasta aquí se repite
 
                 if cy < img.shape[0] // 2:
                     if pose[0] < 0.5:
+                        print("Mover hacia abajo")
                         pose[0] += 0.1
                 elif cy > img.shape[0] // 2:
                     if pose[0] > -0.5:
+                        print("Mover hacia arriba")
                         pose[0] -= 0.1
             elif pitch == 0:
                 # Esta duplicado, pero mas adelante se puede ajustar
