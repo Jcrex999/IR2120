@@ -446,6 +446,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
+    """
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -466,3 +467,6 @@ if __name__ == "__main__":
         elif robot.comprobar_ganador() == 2:
             print("Ganó el jugador 2")
             break
+    """
+
+    cv2.imshow("Grid", robot.detectar_work_grid())
