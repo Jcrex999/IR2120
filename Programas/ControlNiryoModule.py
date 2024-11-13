@@ -181,22 +181,6 @@ class ControlNiryo:
 
             break
 
-    def move_to_grid(self):
-        # Tomamos los valores de Colocar_grid y los guardamos en una variable
-        disponibles = self.variables_especificas["Colocar_grid"]["Disponibles"]
-
-        print("\nDisponibles: ", disponibles)
-        print("\nMejor movimiento: ", self.variables_especificas["best_move"])
-
-        for move in disponibles:
-            print("\n", move[0], self.variables_especificas["best_move"])
-            if move[0] == self.variables_especificas["best_move"]:
-                print("\n\nMovimiento encontrado", move)
-                self.robot.move_pose(self.observation_poses[self.workspace_name2])
-                place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
-                self.robot.place_from_pose(place_pose)
-                break
-
     def mover_pick(self, place_pose):
         while True:
             self.vision_pick()
@@ -338,7 +322,7 @@ class ControlNiryo:
                     cv2.circle(img_result, (x_center, y_center), 5, (0, 0, 255), -1)
 
                     cv2.imshow("Grid", img_result)
-                    cv2.waitKey(0)
+                    cv2.waitKey(100)
 
                     # Calcular la posición en la matriz grid
                     grid_x = x_center // cell_width
@@ -377,7 +361,7 @@ class ControlNiryo:
                         print("No hay objeto")
                         cx_rel, cy_rel = relative_pos_from_pixels(im_work, x_center, y_center)
                         angle = get_contour_angle(cnt)
-                        self.variables_especificas["Colocar_grid"]["Disponibles"].append([[grid_y, grid_x],cx_rel, cy_rel, angle])
+                        self.variables_especificas["Colocar_grid"]["Disponibles"].append([[grid_y, grid_x],x_center, y_center, angle])
                         self.variables_especificas["tablero"][grid_y][grid_x] = 0
                         print(self.variables_especificas["Colocar_grid"]["Disponibles"])
                         for i in range(3):
@@ -436,6 +420,22 @@ class ControlNiryo:
             print(f"Jugador 1 coloca en la posicion {best_move}")
             for fila in self.variables_especificas["tablero"]:
                 print(fila)
+
+    def move_to_grid(self):
+        # Tomamos los valores de Colocar_grid y los guardamos en una variable
+        disponibles = self.variables_especificas["Colocar_grid"]["Disponibles"]
+
+        print("\nDisponibles: ", disponibles)
+        print("\nMejor movimiento: ", self.variables_especificas["best_move"])
+
+        for move in disponibles:
+            print("\n", move[0], self.variables_especificas["best_move"])
+            if move[0] == self.variables_especificas["best_move"]:
+                print("\n\nMovimiento encontrado", move)
+                self.robot.move_pose(self.observation_poses[self.workspace_name2])
+                place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
+                self.robot.place_from_pose(place_pose)
+                break
 
     def hacer_jugada(self):
         img = self.detectar_work_grid()
