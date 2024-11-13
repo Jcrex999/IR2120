@@ -501,7 +501,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
-    """
+
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -517,7 +517,7 @@ if __name__ == "__main__":
             break
 
         print(input("Jugador 2, presiona enter para continuar"))
-    """
+
 
     """
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -533,7 +533,7 @@ if __name__ == "__main__":
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
 
-    robot.robot.move_pose(robot.observation_poses["gazebo_2"])
-    robot.filtrado_img()
+    #robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+    #robot.filtrado_img()
 
-    robot.detect_grid(robot.detectar_work_grid())
+    #robot.detect_grid(robot.detectar_work_grid())
