@@ -437,6 +437,9 @@ if __name__ == "__main__":
     #robot.mover_pick("dejar_obj")
 
     # Ejercicio 2
-    robot.robot.move_pose(robot.observation_poses["bloque1"])
-    while True:
-        robot.centrar_objeto()
+    #robot.robot.move_pose(robot.observation_poses["bloque1"])
+    #while True:
+    #    robot.centrar_objeto()
+
+    # Ejercicio 3
+    robot.robot.move_pose(robot.observation_poses["bloque2"])
