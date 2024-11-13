@@ -534,6 +534,6 @@ lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
 
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
-    #robot.filtrado_img()
+    robot.filtrado_img()
 
     robot.detect_grid(robot.detectar_work_grid())
