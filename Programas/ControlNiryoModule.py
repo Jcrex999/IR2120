@@ -36,7 +36,8 @@ class ControlNiryo:
                 "Disponibles": [],
                 "Ocupados": []
             },
-            "best_move": None
+            "best_move": None,
+            "detectado": False
         }
 
         # Definir las posiciones de observación
@@ -192,9 +193,11 @@ class ControlNiryo:
                 break
 
     def mover_pick(self, place_pose):
-        self.vision_pick()
-        self.robot.move_pose(self.place_pose[place_pose])
-        self.robot.open_gripper(100)
+        while self.variables_especificas["try_without_success"] < 5:
+            self.vision_pick()
+            self.robot.move_pose(self.place_pose[place_pose])
+            self.robot.open_gripper(100)
+            self.robot.move_pose(self.observation_poses[self.workspace_name1])
 
     # ==================================================
     # Seguimiento de objetos
@@ -250,6 +253,7 @@ class ControlNiryo:
 
             print("\n", pose, "Situación actual\n")
             self.robot.move_pose(PoseObject(*pose))
+
 
     # ==================================================
     # Juego del tres en raya
@@ -426,10 +430,7 @@ if __name__ == "__main__":
     #for _ in range(3):
     #    robot.mover_pick("dejar_obj")
 
-    robot.robot.move_pose(robot.observation_poses["bloque1"])
-    robot.vision_pick()
-    robot.robot.move_pose(robot.place_pose["dejar_obj"])
-    robot.robot.open_gripper(100)
+    robot.mover_pick("dejar_obj")
 
     """
     robot.robot.move_pose(robot.observation_poses["bloque1"])
