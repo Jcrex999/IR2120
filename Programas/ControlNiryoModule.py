@@ -468,7 +468,7 @@ if __name__ == "__main__":
             print("Ganó el jugador 2")
             break
     """
-    img = robot.get_img_workspace()
+    img = robot.get_img_workspace("bloque1")
     print(img.shape)
     cv2.imshow("Grid", img)
     cv2.waitKey(0)
