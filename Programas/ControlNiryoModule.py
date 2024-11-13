@@ -49,7 +49,7 @@ class ControlNiryo:
             ),
             "bloque2": PoseObject(
                 x=0.0, y=0.2, z=0.35,
-                roll=0.0, pitch=1.75, yaw=-0.2,
+                roll=0.0, pitch=1.75, yaw=0.2,
             ),
             "gazebo_1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
@@ -443,3 +443,5 @@ if __name__ == "__main__":
 
     # Ejercicio 3
     robot.robot.move_pose(robot.observation_poses["bloque2"])
+    img = robot.get_img()
+    cv2.imshow("Imagen", img)
