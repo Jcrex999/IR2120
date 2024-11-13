@@ -424,11 +424,12 @@ class ControlNiryo:
 
     def hacer_jugada(self):
         img = self.detectar_work_grid()
-        cv2.imshow("Grid", img)
-        self.detect_grid(img)
-        self.calcular_jugada()
-        self.vision_pick()
-        self.move_to_grid()
+        if img is not None:
+            cv2.imshow("Grid", img)
+            self.detect_grid(img)
+            self.calcular_jugada()
+            self.vision_pick()
+            self.move_to_grid()
 
 if __name__ == "__main__":
     robot = ControlNiryo()
@@ -446,7 +447,6 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
-    """
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -460,15 +460,11 @@ if __name__ == "__main__":
         elif robot.comprobar_ganador() == 2:
             print("Ganó el jugador 2")
             break
-        robot.hacer_jugada()
-        if robot.comprobar_ganador() == 1:
-            print("Ganó el jugador 1")
-            break
-        elif robot.comprobar_ganador() == 2:
-            print("Ganó el jugador 2")
-            break
+
+        print(input("Jugador 2, presiona enter para continuar"))
     """
     img = robot.get_img_workspace("bloque1")
     print(img.shape)
     cv2.imshow("Grid", img)
     cv2.waitKey(0)
+    """
