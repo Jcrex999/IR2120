@@ -10,18 +10,18 @@ class ControlNiryo:
         # Si estas en simulador es 127.0.0.1
         # Si estas en el real es 169.254.200.200
 
-        self.robot = NiryoRobot("127.0.0.1")
+        self.robot = NiryoRobot("169.254.200.200")
         self.robot.calibrate_auto()
 
         # Obtener la matriz de la cámara y los coeficientes de distorsión
         self.mtx, self.dist = self.robot.get_camera_intrinsics()
 
         # Definir el nombre de los espacios de trabajo
-        self.workspace_name1 = "gazebo_1"
-        self.workspace_name2 = "gazebo_2"
+        #self.workspace_name1 = "gazebo_1"
+        #self.workspace_name2 = "gazebo_2"
 
-        #self.workspace_name1 = "bloque1"
-        #self.workspace_name2 = "bloque2"
+        self.workspace_name1 = "bloque1"
+        self.workspace_name2 = "bloque2"
 
         # Definir las variables específicas para las actividades
         self.variables_especificas = {
@@ -200,7 +200,6 @@ class ControlNiryo:
     # Seguimiento de objetos
     def centrar_objeto(self):
         img = self.get_img()
-        # height, width = img.shape[:2]
         img_thresh = self.detect_color("red")
         contour = biggest_contour_finder(img_thresh)
         if contour is None or len(contour) == 0:
@@ -210,8 +209,46 @@ class ControlNiryo:
             cx, cy = get_contour_barycenter(contour)
             cx_rel, cy_rel = relative_pos_from_pixels(img, cx, cy)
             print(cx_rel, cy_rel)
-            angle = get_contour_angle(contour)
-            self.robot.move_pose(PoseObject(x=cx_rel, y=cy_rel, z=0.35, roll=0.0, pitch=1.57, yaw=angle))
+
+            # Obtener el ángulo actual de la cámara
+            pose = self.robot.get_pose().to_list()
+            pitch = pose[4]  # Yaw es el sexto elemento en la lista de pose
+
+            # Ajustar movimientos según el ángulo de la cámara
+            if pitch == 1.57:
+                # Esta duplicado, pero mas adelante se puede ajustar
+                if cx < img.shape[1] // 2:
+                    if pose[1] < 0.5:
+                        pose[1] += 0.1
+                elif cx > img.shape[1] // 2:
+                    if pose[1] > -0.5:
+                        pose[1] -= 0.1
+                # Hasta aquí se repite
+
+                if cy < img.shape[0] // 2:
+                    if pose[0] < 0.5:
+                        pose[0] += 0.1
+                elif cy > img.shape[0] // 2:
+                    if pose[0] > -0.5:
+                        pose[0] -= 0.1
+            elif pitch == 0:
+                # Esta duplicado, pero mas adelante se puede ajustar
+                if cx < img.shape[1] // 2:
+                    if pose[1] < 0.5:
+                        pose[1] += 0.1
+                elif cx > img.shape[1] // 2:
+                    if pose[1] > -0.5:
+                        pose[1] -= 0.1
+                # Hasta aquí se repite
+
+                if cy < img.shape[0] // 2:
+                    if pose[2] < 0.5:
+                        pose[2] += 0.1
+                elif cy > img.shape[0] // 2:
+                    if pose[2] > -0.5:
+                        pose[2] -= 0.1
+
+            self.robot.move_pose(PoseObject(*pose))
 
     # ==================================================
     # Juego del tres en raya
@@ -387,6 +424,6 @@ if __name__ == "__main__":
     
     #for _ in range(3):
     #    robot.mover_pick("dejar_obj")
-    robot.robot.move_pose(robot.observation_poses["gazebo_1"])
+    robot.robot.move_pose(robot.observation_poses["bloque1"])
     while True:
         robot.centrar_objeto()

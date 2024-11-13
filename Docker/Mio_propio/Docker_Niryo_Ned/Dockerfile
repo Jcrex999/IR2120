@@ -11,7 +11,12 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     python3 \
     python3-pip \
+    python2.7 \
     iputils-ping \
+    build-essential \
+    sqlite3 \
+    ffmpeg \
+    git \
     unzip && rm -rf /var/lib/apt/lists/*
 
 # Agregar repositorio de ROS y claves como root
@@ -23,19 +28,44 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-desktop-full \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear un nuevo usuario
-RUN useradd -ms /bin/bash user
-
-# Cambiar a este nuevo usuario
-#USER user
-
 # Configurar el entorno de ROS
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 SHELL ["/bin/bash", "-c"]
 
+# Instalación de paquetes necesarios de Ubuntu
+RUN apt-get update && apt-get install -y \
+    python3-catkin-tools \
+    python-pymodbus \
+    python-rosdistro \
+    python-rospkg \
+    python-rosdep-modules \
+    python-rosinstall \
+    python-rosinstall-generator \
+    python-wstool \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalación de paquetes específicos de ROS Melodic
+RUN apt-get update && apt-get install -y \
+    ros-melodic-moveit \
+    ros-melodic-controller-manager \
+    ros-melodic-joint-state-controller \
+    ros-melodic-effort-controllers \
+    ros-melodic-tf2-web-republisher \
+    ros-melodic-rosbridge-server \
+    ros-melodic-joint-state-publisher-gui \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN source /opt/ros/melodic/setup.bash
+
+RUN mkdir -p /home/user/catkin_ws/src \
+    && cd /home/user/catkin_ws \
+    && git clone https://github.com/NiryoRobotics/ned_ros src
+
 # Instalar dependencias de Python y pyniryo
 RUN python3 -m pip install --upgrade pip \
     && pip3 install pyniryo
+
+# RUN pip3 install -r ned_ros/src/requeriments_ned2.txt
 
 # Crear un directorio temporal para descargar NiryoStudio
 #WORKDIR /home/user
@@ -48,6 +78,12 @@ RUN curl -L -o NiryoStudio.zip "https://s3-niryo-public.s3.eu-west-3.amazonaws.c
     && chown root:root /opt/NiryoStudio/chrome-sandbox \
     && chmod 4755 /opt/NiryoStudio/chrome-sandbox
 
+RUN apt-get update && apt-get install -y libpthread-stubs0-dev
+
+RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-add-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt-get update && apt-get install -y cmake
+RUN apt-get update && apt-get install -y ros-melodic-rosdoc-lite
 
 
 # Crear un script de arranque para facilitar el uso del contenedor
@@ -57,5 +93,11 @@ RUN chmod +x /start.sh
 # Definir el punto de entrada
 ENTRYPOINT ["/start.sh"]
 
-# Cambiar a este nuevo usuario
-USER user
+# Crear un nuevo usuario con nombre 'user' y contraseña 'root'
+RUN useradd -ms /bin/bash user && echo "user:root" | chpasswd
+
+# Otorgar permisos de sudo al nuevo usuario
+RUN usermod -aG sudo user
+
+# Permitir que el usuario 'user' use sudo sin contraseña
+RUN echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers

@@ -39,5 +39,5 @@ EXPOSE 9090
 # Expose ros master port
 EXPOSE 11311
 
-COPY .docker/docker_ros_entrypoint.sh /opt/docker_ros_entrypoint.sh
+COPY prueba/docker_ros_entrypoint.sh /opt/docker_ros_entrypoint.sh
 ENTRYPOINT [ "/opt/docker_ros_entrypoint.sh" ]
