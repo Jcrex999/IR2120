@@ -191,7 +191,7 @@ class ControlNiryo:
         for move in disponibles:
             print("\n", move[0], self.variables_especificas["best_move"])
             if move[0] == self.variables_especificas["best_move"]:
-                print("\n\nMovimiento encontrado")
+                print("\n\nMovimiento encontrado", move)
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
                 self.robot.place_from_pose(place_pose)
                 break
