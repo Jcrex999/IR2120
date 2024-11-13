@@ -336,7 +336,7 @@ class ControlNiryo:
                     cv2.circle(img_result, (x_center, y_center), 5, (0, 0, 255), -1)
 
                     cv2.imshow("Grid", img_result)
-                    cv2.waitKey(0)
+                    cv2.waitKey(50)
 
                     # Calcular la posición en la matriz grid
                     grid_x = x_center // cell_width
@@ -460,6 +460,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
+    """
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -476,8 +477,13 @@ if __name__ == "__main__":
 
         print(input("Jugador 2, presiona enter para continuar"))
     """
-    img = robot.get_img_workspace("bloque1")
-    print(img.shape)
-    cv2.imshow("Grid", img)
+
+    robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+    img_result = robot.get_img_workspace("gazebo_2")
+    img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
+    lower = np.array([0, 0, 100])
+    upper = np.array([255, 255, 200])
+    mask = cv2.inRange(img_hsv, lower, upper)
+
+    cv2.imshow("Mask", mask)
     cv2.waitKey(0)
-    """
