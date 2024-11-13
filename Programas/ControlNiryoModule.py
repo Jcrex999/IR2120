@@ -192,6 +192,7 @@ class ControlNiryo:
             print("\n", move[0], self.variables_especificas["best_move"])
             if move[0] == self.variables_especificas["best_move"]:
                 print("\n\nMovimiento encontrado", move)
+                self.robot.move_pose(self.observation_poses[self.workspace_name2])
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
                 self.robot.place_from_pose(place_pose)
                 break
@@ -311,7 +312,7 @@ class ControlNiryo:
         mask = cv2.inRange(img_hsv, lower, upper)
 
         cv2.imshow("Mask", mask)
-        cv2.waitKey(0)
+        cv2.waitKey(100)
 
         contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
