@@ -48,8 +48,8 @@ class ControlNiryo:
                 roll=0.0, pitch=1.67, yaw=0,
             ),
             "bloque2": PoseObject(
-                x=0.08, y=0.2, z=0.35,
-                roll=0.0, pitch=1.75, yaw=0,
+                x=0.0, y=0.2, z=0.35,
+                roll=0.0, pitch=1.75, yaw=-0.2,
             ),
             "gazebo_1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
