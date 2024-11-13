@@ -423,7 +423,9 @@ class ControlNiryo:
                 print(fila)
 
     def hacer_jugada(self):
-        self.detect_grid(self.detectar_work_grid())
+        img = self.detectar_work_grid()
+        cv2.imshow("Grid", img)
+        self.detect_grid(img)
         self.calcular_jugada()
         self.vision_pick()
         self.move_to_grid()
