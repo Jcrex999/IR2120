@@ -425,6 +425,13 @@ if __name__ == "__main__":
     
     #for _ in range(3):
     #    robot.mover_pick("dejar_obj")
+
+    robot.robot.move_pose(robot.observation_poses["bloque1"])
+    robot.vision_pick()
+    robot.robot.move_pose(robot.place_pose["dejar_obj"])
+
+    """
     robot.robot.move_pose(robot.observation_poses["bloque1"])
     while True:
         robot.centrar_objeto()
+    """
