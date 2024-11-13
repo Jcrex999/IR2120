@@ -305,8 +305,8 @@ class ControlNiryo:
     def detect_grid(self, im_work):
         img_result = im_work.copy()
         img_hsv = cv2.cvtColor(im_work, cv2.COLOR_BGR2HSV)
-        lower = np.array([0, 0, 100])
-        upper = np.array([255, 255, 200])
+        lower = np.array([0, 0, 0])
+        upper = np.array([255, 255, 132])
         mask = cv2.inRange(img_hsv, lower, upper)
 
         cv2.imshow("Mask", mask)
@@ -501,7 +501,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
-    """
+
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -517,14 +517,14 @@ if __name__ == "__main__":
             break
 
         print(input("Jugador 2, presiona enter para continuar"))
-    """
+
 
     """
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
     img_result = robot.get_img_workspace("gazebo_2")
     img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
     lower = np.array([0, 0, 0])
-    upper = np.array([179, 255, 132])
+    upper = np.array([255, 255, 132])
     mask = cv2.inRange(img_hsv, lower, upper)
 
     cv2.imshow("Mask", mask)
@@ -533,5 +533,5 @@ if __name__ == "__main__":
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
 
-    robot.robot.move_pose(robot.observation_poses["gazebo_2"])
-    robot.filtrado_img()
+    #robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+    #robot.filtrado_img()
