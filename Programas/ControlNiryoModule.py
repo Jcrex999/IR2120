@@ -43,11 +43,11 @@ class ControlNiryo:
         self.observation_poses = {
             "bloque1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
-                roll=0.0, pitch=1.57, yaw=0,
+                roll=0.0, pitch=1.67, yaw=0,
             ),
             "bloque2": PoseObject(
                 x=0.18, y=1.0, z=0.35,
-                roll=0.0, pitch=1.57, yaw=0.2,
+                roll=0.0, pitch=1.67, yaw=0,
             ),
             "gazebo_1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
