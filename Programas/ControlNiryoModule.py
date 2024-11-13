@@ -193,8 +193,10 @@ class ControlNiryo:
                 break
 
     def mover_pick(self, place_pose):
-        while self.variables_especificas["try_without_success"] < 5:
+        while True:
             self.vision_pick()
+            if self.variables_especificas["try_without_success"] >= 5:
+                break
             self.robot.move_pose(self.place_pose[place_pose])
             self.robot.open_gripper(100)
             self.robot.move_pose(self.observation_poses[self.workspace_name1])
