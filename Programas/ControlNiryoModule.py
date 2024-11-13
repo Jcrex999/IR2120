@@ -50,7 +50,7 @@ class ControlNiryo:
             ),
             "gazebo_1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
-                roll=0.0, pitch=1.4, yaw=-0.1,
+                roll=0.0, pitch=1.57, yaw=0.0,
             ),
             "gazebo_2": PoseObject(
                 x=0.0, y=0.2, z=0.35,
