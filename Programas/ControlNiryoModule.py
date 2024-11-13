@@ -226,11 +226,11 @@ class ControlNiryo:
                 if cx < img.shape[1] // 2:
                     if pose[1] < 0.5:
                         print("Mover a la derecha")
-                        pose[1] += 0.01
+                        pose[1] -= 0.01
                 elif cx > img.shape[1] // 2:
                     if pose[1] > -0.5:
                         print("Mover a la izquierda")
-                        pose[1] -= 0.01
+                        pose[1] += 0.01
                 # Hasta aquí se repite
 
                 if cy < img.shape[0] // 2:
