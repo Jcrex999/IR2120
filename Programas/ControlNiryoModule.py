@@ -206,7 +206,7 @@ class ControlNiryo:
     # Seguimiento de objetos
     def centrar_objeto(self):
         img = self.get_img()
-        img_thresh = self.detect_color("red")
+        img_thresh = self.detect_color("blue")
         contour = biggest_contour_finder(img_thresh)
         if contour is None or len(contour) == 0:
             print("No blob found")
@@ -259,6 +259,8 @@ class ControlNiryo:
                         pose[2] -= 0.1
 
             print("\n", pose, "Situación actual\n")
+            img_contour = draw_barycenter(img, cx, cy)
+            cv2.imshow("Centrado", img_contour)
             self.robot.move_pose(PoseObject(*pose))
 
 
