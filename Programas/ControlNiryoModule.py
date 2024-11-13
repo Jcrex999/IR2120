@@ -188,7 +188,7 @@ class ControlNiryo:
         print("\nMejor movimiento: ", self.variables_especificas["best_move"])
 
         for move in disponibles:
-            print("\n", move)
+            print("\n", move[0], self.variables_especificas["best_move"])
             if move[0] == self.variables_especificas["best_move"]:
                 print("\n\nMovimiento encontrado")
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
