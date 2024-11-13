@@ -460,7 +460,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
 
-    """
+
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -476,8 +476,9 @@ if __name__ == "__main__":
             break
 
         print(input("Jugador 2, presiona enter para continuar"))
-    """
 
+
+    """
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
     img_result = robot.get_img_workspace("gazebo_2")
     img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
@@ -488,5 +489,5 @@ if __name__ == "__main__":
     cv2.imshow("Mask", mask)
     cv2.waitKey(0)
 
-"""lower = np.array([0, 0, 100])
+lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
