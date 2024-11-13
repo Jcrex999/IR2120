@@ -309,6 +309,9 @@ class ControlNiryo:
         upper = np.array([190, 255, 200])
         mask = cv2.inRange(img_hsv, lower, upper)
 
+        cv2.imshow("Mask", mask)
+        cv2.waitKey(0)
+
         contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
         grid_size = self.variables_especificas["grid_dimension"]
