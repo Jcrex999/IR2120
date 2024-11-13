@@ -2,7 +2,6 @@ from pyniryo import *
 import cv2
 import numpy as np
 
-from Docker.ned_ros.sphinx_doc.conf import project
 
 
 class ControlNiryo:
