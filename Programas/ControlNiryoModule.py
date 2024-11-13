@@ -185,6 +185,7 @@ class ControlNiryo:
         disponibles = self.variables_especificas["Colocar_grid"]["Disponibles"]
 
         print("\nDisponibles: ", disponibles)
+        print("\nMejor movimiento: ", self.variables_especificas["best_move"])
 
         for move in disponibles:
             print("\n", move)
