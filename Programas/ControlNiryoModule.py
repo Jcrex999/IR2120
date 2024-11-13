@@ -433,13 +433,21 @@ if __name__ == "__main__":
     # Ejercicio 1
     #robot.mover_pick("dejar_obj")
 
+    """
     # Ejercicio 2
-    #robot.robot.move_pose(robot.observation_poses["bloque1"])
-    #while True:
-    #    robot.centrar_objeto()
+    if SIMULATION:
+        robot.robot.move_pose(robot.observation_poses["gazebo_1"])
+    else:
+        robot.robot.move_pose(robot.observation_poses["bloque1"])
+    while True:
+        robot.centrar_objeto()
+    """
 
     # Ejercicio 3
-    robot.robot.move_pose(robot.observation_poses["bloque2"])
+    if SIMULATION:
+        robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+    else:
+        robot.robot.move_pose(robot.observation_poses["bloque2"])
     while True:
         robot.hacer_jugada()
         if robot.comprobar_ganador() == 1:
