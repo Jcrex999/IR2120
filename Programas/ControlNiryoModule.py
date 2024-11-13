@@ -424,18 +424,10 @@ class ControlNiryo:
 
 if __name__ == "__main__":
     robot = ControlNiryo()
-    
-    #robot.robot.move_pose(robot.place_pose["dejar_obj"])
-    
-    #robot.mover_observation_pose("gazebo_2")
-    
-    #for _ in range(3):
-    #    robot.mover_pick("dejar_obj")
 
-    robot.mover_pick("dejar_obj")
+    # Ejercicio 1
+    #robot.mover_pick("dejar_obj")
 
-    """
-    robot.robot.move_pose(robot.observation_poses["bloque1"])
+    # Ejercicio 2
     while True:
         robot.centrar_objeto()
-    """
