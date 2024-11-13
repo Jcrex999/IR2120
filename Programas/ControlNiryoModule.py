@@ -488,6 +488,6 @@ if __name__ == "__main__":
 
     cv2.imshow("Mask", mask)
     cv2.waitKey(0)
-
+"""
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
