@@ -306,7 +306,7 @@ class ControlNiryo:
         img_result = im_work.copy()
         img_hsv = cv2.cvtColor(im_work, cv2.COLOR_BGR2HSV)
         lower = np.array([0, 0, 0])
-        upper = np.array([0, 0, 40])
+        upper = np.array([0, 0, 44])
         mask = cv2.inRange(img_hsv, lower, upper)
 
         cv2.imshow("Mask", mask)
