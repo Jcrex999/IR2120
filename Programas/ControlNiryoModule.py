@@ -425,6 +425,7 @@ class ControlNiryo:
     def hacer_jugada(self):
         self.detect_grid(self.detectar_work_grid())
         self.calcular_jugada()
+        self.vision_pick()
         self.move_to_grid()
 
 if __name__ == "__main__":
