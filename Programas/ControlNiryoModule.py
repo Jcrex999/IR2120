@@ -422,7 +422,7 @@ class ControlNiryo:
 
         best_move = find_best_move(self.variables_especificas["tablero"])
         print(f"Mejor movimiento: {best_move}")
-        if best_move:
+        if best_move is not None:
             self.variables_especificas["tablero"][best_move[0]][best_move[1]] = 1
             print(f"Jugador 1 coloca en la posicion {best_move}")
             for fila in self.variables_especificas["tablero"]:
