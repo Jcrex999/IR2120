@@ -259,8 +259,8 @@ class ControlNiryo:
                         pose[2] -= 0.1
 
             print("\n", pose, "Situación actual\n")
-            img_contour = draw_barycenter(img, cx, cy)
-            cv2.imshow("Centrado", img_contour)
+            #img_contour = draw_barycenter(img, cx, cy)
+            cv2.imshow("Centrado", img)
             self.robot.move_pose(PoseObject(*pose))
 
 
