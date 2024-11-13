@@ -47,11 +47,11 @@ class ControlNiryo:
             ),
             "bloque2": PoseObject(
                 x=0.18, y=1.0, z=0.35,
-                roll=0.0, pitch=1.67, yaw=0,
+                roll=0.0, pitch=1.75, yaw=0,
             ),
             "gazebo_1": PoseObject(
                 x=0.18, y=0.0, z=0.35,
-                roll=0.0, pitch=1.6, yaw=-0.1,
+                roll=0.0, pitch=1.75, yaw=-0.1,
             ),
             "gazebo_2": PoseObject(
                 x=0.0, y=0.2, z=0.35,
