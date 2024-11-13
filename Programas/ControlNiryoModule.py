@@ -236,11 +236,11 @@ class ControlNiryo:
                 if cy < img.shape[0] // 2:
                     if pose[0] < 0.5:
                         print("Mover hacia abajo")
-                        pose[0] += 0.01
+                        pose[0] -= 0.01
                 elif cy > img.shape[0] // 2:
                     if pose[0] > -0.5:
                         print("Mover hacia arriba")
-                        pose[0] -= 0.01
+                        pose[0] += 0.01
             elif pitch == 0:
                 # Esta duplicado, pero mas adelante se puede ajustar
                 if cx < img.shape[1] // 2:
