@@ -443,5 +443,18 @@ if __name__ == "__main__":
 
     # Ejercicio 3
     robot.robot.move_pose(robot.observation_poses["bloque2"])
-    img = robot.get_img_workspace("bloque2")
-    cv2.imshow("Imagen", img)
+    while True:
+        robot.hacer_jugada()
+        if robot.comprobar_ganador() == 1:
+            print("Ganó el jugador 1")
+            break
+        elif robot.comprobar_ganador() == 2:
+            print("Ganó el jugador 2")
+            break
+        robot.hacer_jugada()
+        if robot.comprobar_ganador() == 1:
+            print("Ganó el jugador 1")
+            break
+        elif robot.comprobar_ganador() == 2:
+            print("Ganó el jugador 2")
+            break
