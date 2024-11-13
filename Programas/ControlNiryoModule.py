@@ -184,8 +184,12 @@ class ControlNiryo:
         # Tomamos los valores de Colocar_grid y los guardamos en una variable
         disponibles = self.variables_especificas["Colocar_grid"]["Disponibles"]
 
+        print("\nDisponibles: ", disponibles)
+
         for move in disponibles:
+            print("\n", move)
             if move[0] == self.variables_especificas["best_move"]:
+                print("\n\nMovimiento encontrado")
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
                 self.robot.place_from_pose(place_pose)
                 break
