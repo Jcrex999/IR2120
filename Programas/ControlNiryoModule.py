@@ -502,7 +502,7 @@ if __name__ == "__main__":
     while True:
         robot.centrar_objeto()
     """
-    robot.robot.move_pose([-0.2, 0.31, 0.1, 0, 1.57, 0])
+    robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
     """
     # Ejercicio 3
     if SIMULATION:
