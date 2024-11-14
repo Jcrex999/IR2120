@@ -3,7 +3,7 @@ from pyniryo import *
 import cv2
 import numpy as np
 
-SIMULATION = True
+SIMULATION = False
 
 class ControlNiryo:
     def __init__(self):
@@ -443,7 +443,17 @@ class ControlNiryo:
         best_move = self.variables_especificas["best_move"]
         if best_move == [0,0]:
             # hacer un movimiento definido para la posicion 0,0
-            self.robot.move_pose()
+            self.robot.move_pose([0.0, 0.25, 0.1, 0, 1.57, 1.57])
+        elif best_move == [0,1]:
+            # hacer un movimiento definido para la posicion 0,1
+            self.robot.move_pose([0.0, 0.29, 0.1, 0, 1.57, 1.57])
+        elif best_move == [0,2]:
+            # hacer un movimiento definido para la posicion 0,2
+            self.robot.move_pose([0.0, 0.29, 0.1, 0, 1.57, 1.57])
+        elif best_move == [1,1]:
+            # hacer un movimiento definido para la posicion 1,1
+            self.robot.move_pose([0.0, 0.25, 0.1, 0, 1.57, 1.57])
+
 
 
     def save_pose_grid(self):
@@ -517,7 +527,7 @@ if __name__ == "__main__":
     while True:
         robot.centrar_objeto()
     """
-    #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
+
     """
     # Ejercicio 3
     if SIMULATION:
@@ -550,15 +560,12 @@ if __name__ == "__main__":
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
 
-    #robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+    robot.robot.move_pose(robot.observation_poses["bloque2"])
     #robot.filtrado_img()
 
     #robot.detect_grid(robot.detectar_work_grid())
 
-    # Obtener la lista de workspaces
-    workspaces = robot.robot.get_workspace_list()
+    #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
 
-    # Imprimir las coordenadas de cada workspace
-    for workspace in workspaces:
-        pose = robot.robot.get_workspace_poses(workspace)
-        print(f"Workspace: {workspace}, Pose: {pose}")
+
+
