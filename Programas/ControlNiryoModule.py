@@ -560,12 +560,15 @@ if __name__ == "__main__":
 lower = np.array([0, 0, 100])
         upper = np.array([179, 255, 200])"""
 
-    robot.robot.move_pose(robot.robot.observation_poses["bloque2"])
+    #robot.robot.move_pose(robot.observation_poses["bloque2"])
     #robot.filtrado_img()
 
     #robot.detect_grid(robot.detectar_work_grid())
 
     #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
+
+    robot.variables_especificas["best_move"] = [0, 0]
+    robot.move_to_grid()
 
 
 
