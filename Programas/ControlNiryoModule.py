@@ -584,8 +584,10 @@ lower = np.array([0, 0, 100])
 
     #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
 
-    robot.variables_especificas["best_move"] = [0, 0]
-    robot.move_to_grid()
 
 
-
+    for i in range(3):
+        for j in range(3):
+            print(input(f"Mover el niryo y preciona enter para guardar la pose de la casilla ({i}, {j})"))
+            robot.variables_especificas["best_move"] = [i, j]
+            robot.move_to_grid()
