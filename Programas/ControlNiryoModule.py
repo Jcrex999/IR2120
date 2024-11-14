@@ -549,11 +549,13 @@ if __name__ == "__main__":
 
     # Ejercicio 3
     while True:
-        print(input("Jugador 2, empieza"))
+
         if SIMULATION:
             robot.robot.move_pose(robot.observation_poses["gazebo_2"])
         else:
             robot.robot.move_pose(robot.observation_poses["bloque2"])
+
+        print(input("Jugador 2, empieza"))
         robot.hacer_jugada()
         if robot.comprobar_ganador() == 1:
             print("Gano el jugador 1")
