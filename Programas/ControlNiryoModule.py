@@ -361,7 +361,7 @@ class ControlNiryo:
                         print("No hay objeto")
                         cx_rel, cy_rel = relative_pos_from_pixels(im_work, x_center, y_center)
                         angle = get_contour_angle(cnt)
-                        self.variables_especificas["Colocar_grid"]["Disponibles"].append([[grid_y, grid_x],x_center, y_center, angle])
+                        self.variables_especificas["Colocar_grid"]["Disponibles"].append([[grid_y, grid_x],cx_rel, cy_rel, angle])
                         self.variables_especificas["tablero"][grid_y][grid_x] = 0
                         print(self.variables_especificas["Colocar_grid"]["Disponibles"])
                         for i in range(3):
@@ -539,3 +539,5 @@ lower = np.array([0, 0, 100])
     #robot.filtrado_img()
 
     #robot.detect_grid(robot.detectar_work_grid())
+
+    robot.robot.move_pose([0.32, 0.31, 0, 0, 1.57, 0])
