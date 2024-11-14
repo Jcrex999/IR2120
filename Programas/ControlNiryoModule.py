@@ -557,9 +557,8 @@ lower = np.array([0, 0, 100])
 
     # Obtener la lista de workspaces
     workspaces = robot.robot.get_workspace_list()
-    print(workspaces)
 
     # Imprimir las coordenadas de cada workspace
-    #for workspace in workspaces:
-    #    pose = robot.robot.get_workspace_poses(workspace)
-    #    print(f"Workspace: {workspace}, Pose: {pose}")
+    for workspace in workspaces:
+        pose = robot.robot.get_workspace_poses(workspace)
+        print(f"Workspace: {workspace}, Pose: {pose}")
