@@ -446,10 +446,11 @@ class ControlNiryo:
             self.robot.move_pose(PoseObject(0.0, 0.25, 0.1, 0, 1.57, 1.57))
         elif best_move == [0,1]:
             # hacer un movimiento definido para la posicion 0,1
-            self.robot.move_pose([0.0, 0.29, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(PoseObject(0.0, 0.29, 0.1, 0, 1.57, 1.57))
         elif best_move == [0,2]:
             # hacer un movimiento definido para la posicion 0,2
-            self.robot.move_pose([0.0, 0.29, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(PoseObject(0.0, 0.29, 0.1, 0, 1.57, 1.57))
+            # [0.0, 0.29, 0.1, 0, 1.57, 1.57]
         elif best_move == [1,1]:
             # hacer un movimiento definido para la posicion 1,1
             self.robot.move_pose([0.0, 0.25, 0.1, 0, 1.57, 1.57])
