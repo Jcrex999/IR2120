@@ -487,6 +487,7 @@ class ControlNiryo:
             self.calcular_jugada()
             self.vision_pick()
             self.move_to_grid()
+            self.robot.open_gripper(100)
 
     def filtrado_img(self):
         img = self.get_img_workspace("gazebo_2")
