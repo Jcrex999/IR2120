@@ -443,18 +443,34 @@ class ControlNiryo:
         best_move = self.variables_especificas["best_move"]
         if best_move == [0,0]:
             # hacer un movimiento definido para la posicion 0,0
-            self.robot.move_pose(PoseObject(0.0, 0.25, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(PoseObject(-0.033, 0.285, 0.1, 0, 1.57, 1.57))
         elif best_move == [0,1]:
             # hacer un movimiento definido para la posicion 0,1
-            self.robot.move_pose(PoseObject(0.0, 0.29, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(PoseObject(0.0, 0.285, 0.1, 0, 1.57, 1.57))
         elif best_move == [0,2]:
             # hacer un movimiento definido para la posicion 0,2
-            self.robot.move_pose(PoseObject(0.0, 0.29, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(PoseObject(0.033, 0.285, 0.1, 0, 1.57, 1.57))
             # [0.0, 0.29, 0.1, 0, 1.57, 1.57]
+        elif best_move == [1, 0]:
+            # hacer un movimiento definido para la posicion 1,0
+            self.robot.move_pose([-0.033, 0.253, 0.1, 0, 1.57, 1.57])
         elif best_move == [1,1]:
             # hacer un movimiento definido para la posicion 1,1
-            self.robot.move_pose([0.0, 0.25, 0.1, 0, 1.57, 1.57])
-
+            self.robot.move_pose([0.0, 0.253, 0.1, 0, 1.57, 1.57])
+        elif best_move == [1,2]:
+            # hacer un movimiento definido para la posicion 1,2
+            self.robot.move_pose([0.033, 0.253, 0.1, 0, 1.57, 1.57])
+        elif best_move == [2,0]:
+            # hacer un movimiento definido para la posicion 2,0
+            self.robot.move_pose([-0.033, 0.217, 0.1, 0, 1.57, 1.57])
+        elif best_move == [2,1]:
+            # hacer un movimiento definido para la posicion 2,1
+            self.robot.move_pose([0.0, 0.217, 0.1, 0, 1.57, 1.57])
+        elif best_move == [2,2]:
+            # hacer un movimiento definido para la posicion 2,2
+            self.robot.move_pose([0.033, 0.217, 0.1, 0, 1.57, 1.57])
+        else:
+            print("No se ha encontrado el mejor movimiento")
 
 
     def save_pose_grid(self):
