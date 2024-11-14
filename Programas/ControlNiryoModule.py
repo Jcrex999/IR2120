@@ -502,7 +502,7 @@ if __name__ == "__main__":
     while True:
         robot.centrar_objeto()
     """
-
+    robot.robot.move_pose([0.32, 0.31, 0, 0, 1.57, 0])
 
     # Ejercicio 3
     if SIMULATION:
@@ -540,4 +540,3 @@ lower = np.array([0, 0, 100])
 
     #robot.detect_grid(robot.detectar_work_grid())
 
-    robot.robot.move_pose([0.32, 0.31, 0, 0, 1.57, 0])
