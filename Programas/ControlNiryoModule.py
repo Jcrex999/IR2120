@@ -541,9 +541,9 @@ lower = np.array([0, 0, 100])
     #robot.detect_grid(robot.detectar_work_grid())
 
     # Obtener la lista de workspaces
-    workspaces = robot.get_workspace_list()
+    workspaces = robot.robot.get_workspace_list()
 
     # Imprimir las coordenadas de cada workspace
     for workspace in workspaces:
-        pose = robot.get_workspace_pose(workspace)
+        pose = robot.robot.get_workspace_pose(workspace)
         print(f"Workspace: {workspace}, Pose: {pose}")
