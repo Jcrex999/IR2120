@@ -71,6 +71,8 @@ class ControlNiryo:
             )
         }
 
+        self.grid_pose = {}
+
     def get_img(self):
         img_compressed = self.robot.get_img_compressed()
         img = uncompress_image(img_compressed)
@@ -422,6 +424,7 @@ class ControlNiryo:
                 print(fila)
 
     def move_to_grid(self):
+        """
         # Tomamos los valores de Colocar_grid y los guardamos en una variable
         disponibles = self.variables_especificas["Colocar_grid"]["Disponibles"]
 
@@ -436,6 +439,18 @@ class ControlNiryo:
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
                 self.robot.move_to_object(self.workspace_name2, place_pose)
                 break
+        """
+        best_move = self.variables_especificas["best_move"]
+        if best_move == [0,0]:
+            # hacer un movimiento definido para la posicion 0,0
+            self.robot.move_pose()
+
+
+    def save_pose_grid(self):
+        for i in range(3):
+            for j in range(3):
+                print(input(f"Mover el niryo y preciona enter para guardar la pose de la casilla ({i}, {j})"))
+                self.grid_pose[(i, j)] = self.robot.save_pose()
 
     def hacer_jugada(self):
         img = self.detectar_work_grid()
@@ -542,8 +557,9 @@ lower = np.array([0, 0, 100])
 
     # Obtener la lista de workspaces
     workspaces = robot.robot.get_workspace_list()
+    print(workspaces)
 
     # Imprimir las coordenadas de cada workspace
-    for workspace in workspaces:
-        pose = robot.robot.get_workspace_poses(workspace)
-        print(f"Workspace: {workspace}, Pose: {pose}")
+    #for workspace in workspaces:
+    #    pose = robot.robot.get_workspace_poses(workspace)
+    #    print(f"Workspace: {workspace}, Pose: {pose}")

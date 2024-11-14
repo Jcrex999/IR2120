@@ -52,6 +52,14 @@ El argumento `--no-sandbox` es necesario para evitar errores de configuración d
 
 Sin embago, ya esta configurado para que se ejecute automáticamente al iniciar el contenedor.
 
+## Ejecucion del simulador
+
+Para ejecutar la simulacion del niryo robot, ejecuta el siguiente comando:
+
+```bash
+roslaunch niryo_robot_bringup desktop_gazebo_simulation.launch
+```
+
 ## Notas
 
 - Asegúrate de que tu sistema tiene suficientes recursos para ejecutar Docker y NiryoStudio.
