@@ -503,7 +503,7 @@ if __name__ == "__main__":
         robot.centrar_objeto()
     """
     robot.robot.move_pose([0.0, 0.31, 0.3, 0, 1.57, 0])
-"""
+    """
     # Ejercicio 3
     if SIMULATION:
         robot.robot.move_pose(robot.observation_poses["gazebo_2"])
@@ -519,7 +519,7 @@ if __name__ == "__main__":
             break
 
         print(input("Jugador 2, presiona enter para continuar"))
-"""
+    """
 
     """
     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
