@@ -487,7 +487,7 @@ class ControlNiryo:
             self.calcular_jugada()
             self.vision_pick()
             self.move_to_grid()
-            self.robot.open_gripper(100)
+            self.robot.open_gripper(400)
 
     def filtrado_img(self):
         img = self.get_img_workspace("gazebo_2")
@@ -549,6 +549,7 @@ if __name__ == "__main__":
 
     # Ejercicio 3
     while True:
+        print(input("Jugador 2, empieza"))
         if SIMULATION:
             robot.robot.move_pose(robot.observation_poses["gazebo_2"])
         else:
@@ -561,7 +562,7 @@ if __name__ == "__main__":
             print("Gano el jugador 2")
             break
 
-        print(input("Jugador 2, presiona enter para continuar"))
+
 
 
     """
