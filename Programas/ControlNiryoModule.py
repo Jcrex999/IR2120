@@ -434,7 +434,7 @@ class ControlNiryo:
                 print("\n\nMovimiento encontrado", move)
                 self.robot.move_pose(self.observation_poses[self.workspace_name2])
                 place_pose = PoseObject(x=move[1], y=move[2], z=0.35, roll=0.0, pitch=1.57, yaw=move[3])
-                self.robot.place_from_pose(place_pose)
+                self.robot.move_to_object(self.workspace_name2, place_pose)
                 break
 
     def hacer_jugada(self):
@@ -502,7 +502,7 @@ if __name__ == "__main__":
     while True:
         robot.centrar_objeto()
     """
-    robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
+    #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
     """
     # Ejercicio 3
     if SIMULATION:
@@ -540,3 +540,10 @@ lower = np.array([0, 0, 100])
 
     #robot.detect_grid(robot.detectar_work_grid())
 
+    # Obtener la lista de workspaces
+    workspaces = robot.get_workspace_list()
+
+    # Imprimir las coordenadas de cada workspace
+    for workspace in workspaces:
+        pose = robot.get_workspace_pose(workspace)
+        print(f"Workspace: {workspace}, Pose: {pose}")
