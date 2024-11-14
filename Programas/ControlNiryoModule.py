@@ -555,10 +555,10 @@ if __name__ == "__main__":
             robot.robot.move_pose(robot.observation_poses["bloque2"])
         robot.hacer_jugada()
         if robot.comprobar_ganador() == 1:
-            print("Ganó el jugador 1")
+            print("Gano el jugador 1")
             break
         elif robot.comprobar_ganador() == 2:
-            print("Ganó el jugador 2")
+            print("Gano el jugador 2")
             break
 
         print(input("Jugador 2, presiona enter para continuar"))
