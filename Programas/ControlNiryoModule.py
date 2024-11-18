@@ -342,7 +342,6 @@ class ControlNiryo:
                     hsv_lower = [108, 141, 0]
                     hsv_upper = [119, 255, 255]
                     roi_thresh_blue = threshold_hsv(roi, hsv_lower, hsv_upper)
-
                     #cv2.imshow("ROI Threshold blue", roi_thresh_blue)
                     #cv2.waitKey(0)
 
