@@ -249,7 +249,7 @@ class ControlNiryo:
                     if pose[2] > -0.5:
                         pose[2] -= 0.1
 
-            print("\n", pose, "Situación actual\n")
+            print("\n", pose, "Situacion actual\n")
             #img_contour = draw_barycenter(img, cx, cy)
             cv2.imshow("Centrado", img)
             self.robot.move_pose(PoseObject(*pose))
@@ -573,7 +573,7 @@ class ControlNiryo:
             print("6. Mostrar lista de poses")
             print("7. Filtrar imagen")
             print("8. Salir")
-            opcion = input("Selecciona una opción: ")
+            opcion = input("Selecciona una opcion: ")
 
             if opcion == "1":
                 self.mover_pick("dejar_obj")
