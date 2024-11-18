@@ -306,6 +306,8 @@ class ControlNiryo:
         cell_width = im_work.shape[1] // grid_size[1]
         cell_height = im_work.shape[0] // grid_size[0]
 
+        print(contours)
+
         for cnt in contours:
             area = cv2.contourArea(cnt)
             print(area, "Area")
