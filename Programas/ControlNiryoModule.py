@@ -582,8 +582,9 @@ class ControlNiryo:
             print("4. Guardar pose")
             print("5. Cargar pose")
             print("6. Mostrar lista de poses")
-            print("7. Filtrar imagen")
-            print("8. Salir\n")
+            print("7. Mover a pose")
+            print("8. Filtrar imagen")
+            print("9. Salir\n")
             opcion = input("Selecciona una opcion: ")
 
             if opcion == "1":
@@ -619,8 +620,10 @@ class ControlNiryo:
                 for pose in n_pose:
                     print(pose)
             elif opcion == "7":
-                self.filtrado_img()
+                self.robot.move_pose(input("Nombre de la pose: "))
             elif opcion == "8":
+                self.filtrado_img()
+            elif opcion == "9":
                 salir = True
 
         print("Fin del programa")
