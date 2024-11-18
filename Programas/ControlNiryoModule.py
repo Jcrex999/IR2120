@@ -565,6 +565,7 @@ class ControlNiryo:
         salir = False
 
         while not salir:
+            print("\nMenu")
             print("1. Hacer ejercicio 1 (Mover y dejar objeto)")
             print("2. Hacer ejercicio 2 (Hacer Hacer jugada)")
             print("3. Hacer ejercicio 3 (Centrar objeto)")
@@ -572,7 +573,7 @@ class ControlNiryo:
             print("5. Cargar pose")
             print("6. Mostrar lista de poses")
             print("7. Filtrar imagen")
-            print("8. Salir")
+            print("8. Salir\n")
             opcion = input("Selecciona una opcion: ")
 
             if opcion == "1":
@@ -605,7 +606,7 @@ class ControlNiryo:
             elif opcion == "6":
                 n_pose = self.robot.get_saved_pose_list()
                 for pose in n_pose:
-                    print(pose, type(pose))
+                    print(pose)
             elif opcion == "7":
                 self.filtrado_img()
             elif opcion == "8":
