@@ -297,7 +297,6 @@ class ControlNiryo:
         #upper = np.array([0, 0, 44])
 
         # nuevas variables
-
         lower = np.array([27, 0, 49])
         upper = np.array([96, 198, 172])
 
