@@ -3,7 +3,7 @@ from pyniryo import *
 import cv2
 import numpy as np
 
-SIMULATION = True
+SIMULATION = False
 
 class ControlNiryo:
     def __init__(self):
