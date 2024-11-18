@@ -441,43 +441,78 @@ class ControlNiryo:
                 break
         """
         best_move = self.variables_especificas["best_move"]
+        """
         if best_move == [0,0]:
             # hacer un movimiento definido para la posicion 0,0
-            self.robot.move_pose(PoseObject(-0.033, 0.285, 0.1, 0, 1.57, 1.57))
+            #self.robot.move_pose(PoseObject(-0.033, 0.285, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(self.robot.get_pose_saved("grid_0_0"))
         elif best_move == [0,1]:
             # hacer un movimiento definido para la posicion 0,1
-            self.robot.move_pose(PoseObject(0.0, 0.285, 0.1, 0, 1.57, 1.57))
+            #self.robot.move_pose(PoseObject(0.0, 0.285, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(self.robot.get_pose_saved("grid_0_1"))
         elif best_move == [0,2]:
             # hacer un movimiento definido para la posicion 0,2
-            self.robot.move_pose(PoseObject(0.033, 0.285, 0.1, 0, 1.57, 1.57))
+            #self.robot.move_pose(PoseObject(0.033, 0.285, 0.1, 0, 1.57, 1.57))
+            self.robot.move_pose(self.robot.get_pose_saved("grid_0_2"))
             # [0.0, 0.29, 0.1, 0, 1.57, 1.57]
         elif best_move == [1, 0]:
             # hacer un movimiento definido para la posicion 1,0
-            self.robot.move_pose([-0.033, 0.253, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([-0.033, 0.253, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_1_0"))
         elif best_move == [1,1]:
             # hacer un movimiento definido para la posicion 1,1
-            self.robot.move_pose([0.0, 0.253, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([0.0, 0.253, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_1_1"))
         elif best_move == [1,2]:
             # hacer un movimiento definido para la posicion 1,2
-            self.robot.move_pose([0.033, 0.253, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([0.033, 0.253, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_1_2"))
         elif best_move == [2,0]:
             # hacer un movimiento definido para la posicion 2,0
-            self.robot.move_pose([-0.033, 0.217, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([-0.033, 0.217, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_2_0"))
         elif best_move == [2,1]:
             # hacer un movimiento definido para la posicion 2,1
-            self.robot.move_pose([0.0, 0.217, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([0.0, 0.217, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_2_1"))
         elif best_move == [2,2]:
             # hacer un movimiento definido para la posicion 2,2
-            self.robot.move_pose([0.033, 0.217, 0.1, 0, 1.57, 1.57])
+            #self.robot.move_pose([0.033, 0.217, 0.1, 0, 1.57, 1.57])
+            self.robot.move_pose(self.robot.get_pose_saved("grid_2_2"))
         else:
             print("No se ha encontrado el mejor movimiento")
-
+        """
+        try:
+            self.robot.move_pose(self.robot.get_pose_saved(f"grid_{best_move[0]}_{best_move[1]}"))
+        except Exception as e:
+            print(e)
+            print("Hubo un error al encntrar el pose guardado")
 
     def save_pose_grid(self):
         for i in range(3):
             for j in range(3):
+                self.robot.set_learning_mode(True)
                 print(input(f"Mover el niryo y preciona enter para guardar la pose de la casilla ({i}, {j})"))
-                self.grid_pose[(i, j)] = self.robot.save_pose()
+                self.robot.save_pose(f"grid_{i}_{j}", self.robot.get_pose())
+                self.robot.set_learning_mode(False)
+
+    def load_pose_grid(self):
+        for i in range(3):
+            for j in range(3):
+                self.grid_pose[f"grid_{i}_{j}"] = self.robot.get_pose_saved(f"grid_{i}_{j}")
+
+    def save_pose_observation(self):
+        opcion = input("Selecciona un workspace: \n"
+                       "1. Bloque1 \n"
+                       "2. Bloque2 \n")
+        try:
+            self.robot.set_learning_mode(True)
+            self.robot.save_pose(f"bloque{opcion}", self.robot.get_pose())
+            self.observation_poses[f"bloque{opcion}"] = self.robot.get_pose_saved(f"bloque{opcion}")
+            self.robot.set_learning_mode(False)
+        except Exception as e:
+            print(e)
+            print("Hubo un error al guardar la pose")
 
     def hacer_jugada(self):
         img = self.detectar_work_grid()
@@ -526,73 +561,82 @@ class ControlNiryo:
 
         cv2.destroyAllWindows()
 
+    def menu(self):
+        salir = False
+
+        while not salir:
+            print("1. Hacer ejercicio 1 (Mover y dejar objeto)")
+            print("2. Hacer ejercicio 2 (Hacer Hacer jugada)")
+            print("3. Hacer ejercicio 3 (Centrar objeto)")
+            print("4. Guardar pose")
+            print("5. Cargar pose")
+            print("6. Mostrar lista de poses")
+            print("7. Filtrar imagen")
+            print("8. Salir")
+            opcion = input("Selecciona una opción: ")
+
+            if opcion == "1":
+                self.mover_pick("dejar_obj")
+            elif opcion == "2":
+                while True:
+                    if SIMULATION:
+                        robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+                    else:
+                        robot.robot.move_pose(robot.observation_poses["bloque2"])
+
+                    print(input("Jugador 2, empieza"))
+                    robot.hacer_jugada()
+                    if robot.comprobar_ganador() == 1:
+                        print("Gano el jugador 1")
+                        break
+                    elif robot.comprobar_ganador() == 2:
+                        print("Gano el jugador 2")
+                        break
+            elif opcion == "3":
+                if SIMULATION:
+                    robot.robot.move_pose(robot.observation_poses["gazebo_1"])
+                else:
+                    robot.robot.move_pose(robot.observation_poses["bloque1"])
+                self.centrar_objeto()
+            elif opcion == "4":
+                self.save_pose_grid()
+            elif opcion == "5":
+                self.load_pose_grid()
+            elif opcion == "6":
+                print(self.robot.get_saved_pose_list())
+            elif opcion == "7":
+                self.filtrado_img()
+            elif opcion == "8":
+                salir = True
+
+        print("Fin del programa")
+        exit()
+
+"""
+    Nota: hay una funcion llamada say en NiryoRobot que funciona de la siguiente forma:
+    
+    say(self, text, language=0)
+    
+    Use gtts (Google Text To Speech) to interprete a string as sound
+        Languages available are:
+        * English: 0
+        * French: 1
+        * Spanish: 2
+        * Mandarin: 3
+        * Portuguese: 4
+
+        Example ::
+
+            robot.say("Hello", 0)
+            robot.say("Bonjour", 1)
+            robot.say("Hola", 2)
+            
+    Mas adelante usarlo para que en la interfas de menu hable
+"""
 
 def nothing(x):
     pass
 
 if __name__ == "__main__":
     robot = ControlNiryo()
-
-    # Ejercicio 1
-    #robot.mover_pick("dejar_obj")
-
-    """
-    # Ejercicio 2
-    if SIMULATION:
-        robot.robot.move_pose(robot.observation_poses["gazebo_1"])
-    else:
-        robot.robot.move_pose(robot.observation_poses["bloque1"])
-    while True:
-        robot.centrar_objeto()
-    """
-
-
-    # Ejercicio 3
-    while True:
-
-        if SIMULATION:
-            robot.robot.move_pose(robot.observation_poses["gazebo_2"])
-        else:
-            robot.robot.move_pose(robot.observation_poses["bloque2"])
-
-        print(input("Jugador 2, empieza"))
-        robot.hacer_jugada()
-        if robot.comprobar_ganador() == 1:
-            print("Gano el jugador 1")
-            break
-        elif robot.comprobar_ganador() == 2:
-            print("Gano el jugador 2")
-            break
-
-
-
-
-    """
-    robot.robot.move_pose(robot.observation_poses["gazebo_2"])
-    img_result = robot.get_img_workspace("gazebo_2")
-    img_hsv = cv2.cvtColor(img_result, cv2.COLOR_BGR2HSV)
-    lower = np.array([0, 0, 0])
-    upper = np.array([255, 255, 132])
-    mask = cv2.inRange(img_hsv, lower, upper)
-
-    cv2.imshow("Mask", mask)
-    cv2.waitKey(0)
-
-lower = np.array([0, 0, 100])
-        upper = np.array([179, 255, 200])"""
-
-    #robot.robot.move_pose(robot.observation_poses["bloque2"])
-    #robot.filtrado_img()
-
-    #robot.detect_grid(robot.detectar_work_grid())
-
-    #robot.robot.move_pose([-0.05, 0.31, 0.1, 0, 1.57, 0])
-
-
-    """
-    for i in range(3):
-        for j in range(3):
-            print(input(f"Mover el niryo y preciona enter para guardar la pose de la casilla ({i}, {j})"))
-            robot.variables_especificas["best_move"] = [i, j]
-            robot.move_to_grid()
-    """
+    robot.menu()
