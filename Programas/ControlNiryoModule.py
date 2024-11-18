@@ -308,6 +308,7 @@ class ControlNiryo:
 
         for cnt in contours:
             area = cv2.contourArea(cnt)
+            print(area, "Area")
             if area > 1000:
                 cv2.drawContours(img_result, cnt, -1, (255, 0, 0), 3)
                 peri = cv2.arcLength(cnt, True)
