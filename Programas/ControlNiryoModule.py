@@ -293,8 +293,14 @@ class ControlNiryo:
     def detect_grid(self, im_work):
         img_result = im_work.copy()
         img_hsv = cv2.cvtColor(im_work, cv2.COLOR_BGR2HSV)
-        lower = np.array([0, 0, 0])
-        upper = np.array([0, 0, 44])
+        #lower = np.array([0, 0, 0])
+        #upper = np.array([0, 0, 44])
+
+        # nuevas variables
+
+        lower = np.array([27, 0, 49])
+        upper = np.array([96, 198, 172])
+
         mask = cv2.inRange(img_hsv, lower, upper)
 
         cv2.imshow("Mask", mask)
