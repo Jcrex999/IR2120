@@ -603,7 +603,9 @@ class ControlNiryo:
             elif opcion == "5":
                 self.load_pose_grid()
             elif opcion == "6":
-                print(self.robot.get_saved_pose_list())
+                n_pose = self.robot.get_saved_pose_list()
+                for pose in n_pose:
+                    print(pose)
             elif opcion == "7":
                 self.filtrado_img()
             elif opcion == "8":
