@@ -357,7 +357,7 @@ class ControlNiryo:
                     hsv_upper = [119, 255, 255]
                     roi_thresh_blue = threshold_hsv(roi, hsv_lower, hsv_upper)
                     cv2.imshow("ROI Threshold blue", roi_thresh_blue)
-                    cv2.waitKey(0)
+                    cv2.waitKey(100)
 
                     # Si detecta el color rojo, entonces hay un objeto
                     if cv2.countNonZero(roi_thresh_red) > 0:
