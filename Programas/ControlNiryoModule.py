@@ -297,8 +297,11 @@ class ControlNiryo:
         #upper = np.array([0, 0, 44])
 
         # nuevas variables
-        lower = np.array([4, 0, 0])
-        upper = np.array([114, 200, 200])
+        #lower = np.array([4, 0, 0])
+        #upper = np.array([114, 200, 200])
+
+        lower = np.array([0, 0, 0])
+        upper = np.array([179, 237, 183])
 
         mask = cv2.inRange(img_hsv, lower, upper)
 
