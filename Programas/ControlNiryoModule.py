@@ -236,18 +236,18 @@ class ControlNiryo:
                 # Esta duplicado, pero mas adelante se puede ajustar
                 if cx < img.shape[1] // 2:
                     if pose[1] < 0.5:
-                        pose[1] -= 0.001
+                        pose[1] -= 0.005
                 elif cx > img.shape[1] // 2:
                     if pose[1] > -0.5:
-                        pose[1] += 0.001
+                        pose[1] += 0.005
                 # Hasta aquí se repite
 
                 if cy < img.shape[0] // 2:
                     if pose[2] < 0.5:
-                        pose[2] -= 0.001
+                        pose[2] -= 0.005
                 elif cy > img.shape[0] // 2:
                     if pose[2] > -0.5:
-                        pose[2] += 0.1
+                        pose[2] += 0.005
 
             print("\n", pose, "Situacion actual\n")
             #img_contour = draw_barycenter(img, cx, cy)
