@@ -629,7 +629,8 @@ class ControlNiryo:
                 if SIMULATION:
                     robot.robot.move_pose(robot.observation_poses["gazebo_1"])
                 else:
-                    robot.robot.move_pose(robot.observation_poses["bloque1"])
+                    #robot.robot.move_pose(robot.observation_poses["bloque1"])
+                    robot.robot.move_joints([0.14, 0.23, -0.3, 0.01, -0.1, 0.06])
                 while True:
                     robot.centrar_objeto()
                     if cv2.waitKey(1) & 0xFF == 27:
