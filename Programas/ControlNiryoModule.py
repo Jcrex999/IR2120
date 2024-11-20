@@ -616,6 +616,10 @@ class ControlNiryo:
                     elif robot.comprobar_ganador() == 2:
                         print("Gano el jugador 2")
                         break
+                if SIMULATION:
+                    robot.robot.move_pose(robot.observation_poses["gazebo_2"])
+                else:
+                    robot.robot.move_pose(robot.observation_poses["bloque2"])
                 cv2.destroyAllWindows()
             elif opcion == "3":
                 if SIMULATION:
