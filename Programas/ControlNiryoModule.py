@@ -538,7 +538,9 @@ class ControlNiryo:
             self.robot.open_gripper(400)
 
     def filtrado_img(self):
-        img = self.get_img_workspace("gazebo_2")
+        #img = self.get_img_workspace("gazebo_2")
+        self.variables_especificas["display_stream"] = False
+
         cv2.namedWindow('Trackbars')
 
         # Create trackbars for color change
