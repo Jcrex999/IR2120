@@ -599,7 +599,8 @@ class ControlNiryo:
             print("6. Mostrar lista de poses")
             print("7. Mover a pose")
             print("8. Filtrar imagen")
-            print("9. Salir\n")
+            print("9. Decir algo")
+            print("10. Salir\n")
             opcion = input("Selecciona una opcion: ")
 
             if opcion == "1":
@@ -643,6 +644,8 @@ class ControlNiryo:
             elif opcion == "8":
                 self.filtrado_img()
             elif opcion == "9":
+                self.decir_algo("Hasta luego, sera precioso vernos")
+            elif opcion == "10":
                 salir = True
 
         print("Fin del programa")
