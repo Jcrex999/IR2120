@@ -586,7 +586,7 @@ class ControlNiryo:
         cv2.destroyAllWindows()
 
     def decir_algo(self, texto):
-        self.robot.say("Hola", 2)
+        self.robot.say("hello", 2)
 
     def menu(self):
         salir = False
