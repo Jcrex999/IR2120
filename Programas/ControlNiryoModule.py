@@ -550,6 +550,7 @@ class ControlNiryo:
         cv2.createTrackbar('V Upper', 'Trackbars', 255, 255, nothing)
 
         while True:
+            img = self.get_img_workspace("gazebo_2")
             # Get current positions of the trackbars
             h_lower = cv2.getTrackbarPos('H Lower', 'Trackbars')
             s_lower = cv2.getTrackbarPos('S Lower', 'Trackbars')
