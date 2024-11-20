@@ -2,6 +2,7 @@
 from pyniryo import *
 import cv2
 import numpy as np
+from soupsieve.util import lower
 
 SIMULATION = False
 
@@ -300,8 +301,11 @@ class ControlNiryo:
         #lower = np.array([4, 0, 0])
         #upper = np.array([114, 200, 200])
 
-        lower = np.array([0, 0, 0])
-        upper = np.array([179, 237, 183])
+        #lower = np.array([0, 0, 0])
+        #upper = np.array([179, 237, 183])
+
+        lower = np.array([0, 0, 184])
+        upper = np.array([255, 255, 255])
 
         mask = cv2.inRange(img_hsv, lower, upper)
 
