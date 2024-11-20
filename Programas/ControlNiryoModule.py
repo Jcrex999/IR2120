@@ -232,7 +232,7 @@ class ControlNiryo:
                     if pose[0] > -0.5:
                         print("Mover hacia arriba")
                         pose[0] += 0.01
-            elif pitch == 0:
+            elif -0.5 < pitch < 0.5:
                 # Esta duplicado, pero mas adelante se puede ajustar
                 if cx < img.shape[1] // 2:
                     if pose[1] < 0.5:
