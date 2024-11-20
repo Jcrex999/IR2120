@@ -644,7 +644,7 @@ class ControlNiryo:
             elif opcion == "8":
                 self.filtrado_img()
             elif opcion == "9":
-                self.decir_algo("Hasta luego, sera precioso vernos")
+                self.decir_algo(input("Introduce el texto: "))
             elif opcion == "10":
                 salir = True
 
