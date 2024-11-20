@@ -232,7 +232,7 @@ class ControlNiryo:
                     if pose[0] > -0.5:
                         print("Mover hacia arriba")
                         pose[0] += 0.01
-            elif -0.5 < pitch < 0.5:
+            elif -0.1 < pitch < 0.5:
                 # Esta duplicado, pero mas adelante se puede ajustar
                 if cx < img.shape[1] // 2:
                     if pose[1] < 0.5:
@@ -438,6 +438,8 @@ class ControlNiryo:
             print(f"Jugador 1 coloca en la posicion {best_move}")
             for fila in self.variables_especificas["tablero"]:
                 print(fila)
+        else:
+            print("No se ha encontrado el mejor movimiento")
 
     def move_to_grid(self):
         """
@@ -619,6 +621,9 @@ class ControlNiryo:
                         break
                     elif robot.comprobar_ganador() == 2:
                         print("Gano el jugador 2")
+                        break
+                    elif robot.comprobar_ganador() == 0:
+                        print("Empate")
                         break
                 if SIMULATION:
                     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
