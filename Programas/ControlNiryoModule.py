@@ -620,7 +620,7 @@ class ControlNiryo:
                 for pose in n_pose:
                     print(pose)
             elif opcion == "7":
-                self.robot.move_pose(input("Nombre de la pose: "))
+                self.robot.move_pose(self.robot.get_pose_saved(input("Introduce el nombre de la pose: ")))
             elif opcion == "8":
                 self.filtrado_img()
             elif opcion == "9":
