@@ -622,9 +622,6 @@ class ControlNiryo:
                     elif robot.comprobar_ganador() == 2:
                         print("Gano el jugador 2")
                         break
-                    elif not any(0 in row for row in robot.variables_especificas["tablero"]):
-                        print("Empate")
-                        break
                 if SIMULATION:
                     robot.robot.move_pose(robot.observation_poses["gazebo_2"])
                 else:
