@@ -2,7 +2,6 @@
 from pyniryo import *
 import cv2
 import numpy as np
-from soupsieve.util import lower
 
 SIMULATION = False
 
